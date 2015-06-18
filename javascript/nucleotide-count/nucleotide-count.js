@@ -9,10 +9,9 @@ var dna = function (input) {
 
     return {
 
-        dnaString: input,
         count: function (searchString) {
 
-            return this.dnaString ? (this.dnaString.match(new RegExp(searchString, 'gi')) || []).length : 0;
+            return input ? (input.match(new RegExp(searchString, 'gi')) || []).length : 0;
         },
         histogram: function () {
 
