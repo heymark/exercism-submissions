@@ -2,20 +2,22 @@
 
 var PhoneNumber = function (input) {
 
+    var phoneNumber = "0000000000",
+        processedInput = "1".concat(input.replace(/\D+/g, '')),
+        properInputLength = processedInput.length === 11 || processedInput.length === 12;
+
+    if (properInputLength && processedInput.substr(-11).substr(0, 1) === "1") {
+        phoneNumber = processedInput.substr(-10);
+    }
+
     return {
-
         number: function () {
-
-            var processedInput = "1".concat(input.replace(/\D+/g, ''));
-
-            return (([11, 12].indexOf(processedInput.length) !== -1) && processedInput.substr(-11).substr(0, 1) === "1") ? processedInput.substr(-10) : "0000000000";
+            return phoneNumber;
         },
         areaCode: function () {
-
             return this.number().substr(0, 3);
         },
         toString: function () {
-
             return "(" + this.areaCode() + ") " + this.number().substr(3, 3) + "-" + this.number().substr(6);
         }
     };
