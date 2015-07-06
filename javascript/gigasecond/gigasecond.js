@@ -1,15 +1,14 @@
 "use strict";
 
-var Gigasecond = function (date) {
+var Gigasecond = function (birthDate) {
 
-    // Values below are in milliseconds 
-
-    var exactTimeOfGigasecondBirthday = date.getTime() + 1000000000000;
-    var midnightBeforeGigasecondBirthday = exactTimeOfGigasecondBirthday - (exactTimeOfGigasecondBirthday % 86400000);
-    var correctionForCurrentTimezone = (date.getTimezoneOffset() * 60000) + 3600000;
+    var exactTimeOfGigasecondBirthday = new Date(birthDate.getTime() + Math.pow(10, 12));
+    var midnightBeforeGigasecondBirthday = new Date(exactTimeOfGigasecondBirthday.getFullYear(), 
+                                                    exactTimeOfGigasecondBirthday.getMonth(), 
+                                                    exactTimeOfGigasecondBirthday.getDate());
 
     this.date = function () {
-        return new Date(midnightBeforeGigasecondBirthday + correctionForCurrentTimezone);
+        return midnightBeforeGigasecondBirthday;
     };
 };
 
